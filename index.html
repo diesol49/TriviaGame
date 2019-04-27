@@ -8,39 +8,36 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.js"
-        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
-        </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css">
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   
     <title>TriviaGame</title>
 </head>
 
 <body>
     <script type="text/javascript" src="assets/javascript/app.js"></script>
-    
 
-<div class="container">
-    <div class="row">
-        <div class="col-lg-12">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
                 <h1 class="display-1">Random Trivia!</h1>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- append the questions into this div -->
+    <div class="wrapper">
+        <div id="main-timer">
+            <div id="quiz">
+                <button id="start">Start</button>
+            </div>
+
+
         </div>
     </div>
-
-</div>
-
-<div class="row">
-    <div class="col-md-12" id="mainTimer">
-            <h1>You have<span class="badge badge-secondary" id="timer">30 seconds</span></h1>
-            <button type="button" id="submit" class="btn btn-dark">Submit</button>
-    </div>
-</div>
-<div class="questions">Our atmosphere is approximately what percent oxygen?</div>
-
-<div class="questions">When facing mount Rushmore, what Presidents head is furthest on the right?</div>
-
-<!-- append the questions into this div -->
-<div id="display"></div>
-
-
 </body>
 
 </html>

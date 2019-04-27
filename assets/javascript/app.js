@@ -1,36 +1,7 @@
 
-// keep track of user clicks
-
-// display the results and score
-
-// prevent user from selecting from more than one
-
-// track correct answers
-
-// track incorrect answers
-
-// alert if user wins
-
-// alert if user loses
 
 // display a timer
-var count = 30;
-var counter = setInterval(timer, 1000);
-function timer() {
-    count = count - 1;
-    if (count <= -1) {
-        clearInterval(counter);
-        return;
-    }
-    // else if (count === -1) {
-    //     clearInterval(count);
-    // }
-
-    document.getElementById("timer").innerHTML = count + " seconds";
-};
-
-
-// questions
+var area = $("#quiz");
 
 var myQuestions = [
     {
@@ -38,7 +9,7 @@ var myQuestions = [
     choices: [  "39%",
                 "72",
                 "21%"],
-    answer: [2]
+    answer: "21%"
 
     },
 
@@ -47,7 +18,7 @@ var myQuestions = [
     choices: [   "George Washington",
                  "Abraham Lincoln",
                  "Teddy Roosevelt"],
-    answer: [1]
+    answer: "Abraham Lincoln"
     },
 
 {
@@ -55,7 +26,7 @@ var myQuestions = [
     choices: [  "Amazon",
                 "Apple",
                 "Google"],
-    answer: [1]
+    answer: "Apple"
     },
 
 {
@@ -63,7 +34,7 @@ var myQuestions = [
     choices: [  "Sleepwalk",
                 "Bed Wetting",
                 "Insomnia"],
-    answer: [1]
+    answer: "Bed Wetting"
     },
 
 {
@@ -71,7 +42,7 @@ var myQuestions = [
     choices: [  "Yellow M&M",
                 "Buzz Lightyear",
                 "Chester Cheetah"],
-    answer: [0]
+    answer: "Yellow M&M"
     },
         
 {
@@ -79,7 +50,7 @@ var myQuestions = [
     choices: [  "Pinesol",
                 "Windez",
                 "WD-40"],
-    answer: [2]
+    answer: "WD-40"
     },
         
 {
@@ -87,7 +58,7 @@ var myQuestions = [
     choices: [  "The Moon",
                 "Brazil",
                 "Australia"],
-    answer: [0]
+    answer: "The Moon"
     },
         
 {
@@ -95,7 +66,7 @@ var myQuestions = [
     choices: [  "Rook",
                 "Knight",
                 "Bishop"],
-    answer: [2]
+    answer: "Bishop"
     },
         
 {
@@ -103,7 +74,7 @@ var myQuestions = [
     choices: [  "Mars",
                 "Uranus",
                 "Jupiter"],
-    answer: [1]
+    answer: "Uranus"
     },
         
 {
@@ -111,7 +82,7 @@ var myQuestions = [
     choices: [  "Unique Vocal Chords",
                 "Hollow Beaks",
                 "Nobody Knows"],
-    answer: [2]
+    answer: "Nobody Knows"
     },
         
 {
@@ -119,24 +90,71 @@ var myQuestions = [
     choices: [  "Chocolate Bar",
                 "A form of stars",
                 "Our Galaxy"],
-    answer: [2]
+    answer: "Our Galaxy"
     },
 ];
 
-// display questions
-function loadAnswers() {
-    $(".myQuestions, .timer").show();
-    for (var i = 0; i < myQuestions.length; i++)
-    {
-        $(".myQuestions").append("<div id=q"+ i +"></div>");
+var counter
+var game = {
+    correct: 0,
+    incorrect: 0,
+    timer: 40,
 
-        $("#q" + i).append("<div><p>" + myQuestions[i].myQuestions + "</p></div>");
-    
-        
+    countdown: function() {
+        game.timer--;
+        $("#timer-number").html(game.timer);
+        if (game.timer === 0) {
+            console.log("Time Up!");
+            game.done();
+        }
+    },
+
+    start: function() {
+        counter = setInterval(game.countdown, 1000);
+
+        $("#main-timer").prepend(
+            "<h2>Time Remaining: <span id='counter-number'>40</span> Seconds</h2>"
+        );
+
+        $("#start").remove();
+
+        for (var i = 0; i < myQuestions.length; i++) {
+            area.append("<h2>" + myQuestions[i].question + "</h2>");
+            for (var j = 0; j < myQuestions[i].choices.length; j++) {
+                area.append("<input type='radio' name='question-" + i +
+                "' value='" + myQuestions[i].choices[j] + "''>" + myQuestions[i].choices[j]);
+            }
+        }
+
+        area.append("<button id ='done'> Done</button>");
+    },
+
+    done: function() {
+        var inputs = area.children("input:checked");
+        for (var i = 0; i < inputs.length; i++) {
+            if ($(inputs[i]).val () === myQuestions[i].answer) {
+                game.correct++;
+            }   else{
+                game.incorrect++;
+            }
+        }
+        this.result();
+    },
+
+    result: function() {
+        clearInterval(counter);
+        $("#main-timer h2").remove();
+
+        area.html("<h2> Done!</h2>");
+        area.append("<h3>Correct Answers: " + this.correct + "</h3>");
+        area.append("<h3>Incorrect Answers: " + this.incorrect + "</h3>");
     }
+};
 
-    $("#submit").on("click", function ()
-    {
-        timer.stop();
-    });
-}
+$(docuemnt).on("click", "#start", function() {
+    game.start();
+});
+
+$(document).on("click", "#done", function() {
+    game.done();
+});
