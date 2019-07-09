@@ -5,19 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- BOOTSTRAP -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- CSS SHEET -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css">
-
+    <!-- jQUERY -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-   
+
     <title>TriviaGame</title>
 </head>
 
 <body>
-    <script type="text/javascript" src="assets/javascript/app.js"></script>
-
 
     <div class="container">
         <div class="row">
@@ -25,19 +24,20 @@
                 <h1 class="display-1">Random Trivia!</h1>
             </div>
         </div>
-
     </div>
+
 
     <!-- append the questions into this div -->
-    <div class="wrapper">
-        <div id="main-timer">
-            <div id="quiz">
+    <div id="wrapper">
+        <div id="sub-wrapper">
+            <div id="quiz-area">
                 <button id="start">Start</button>
             </div>
-
-
         </div>
     </div>
+
+    <script type="text/javascript" src="assets/javascript/app.js"></script>
+
 </body>
 
 </html>
